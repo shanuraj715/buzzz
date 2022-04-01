@@ -1,0 +1,21 @@
+.err-404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.err404-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  text-align: center;
+  gap: 10px;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+}
