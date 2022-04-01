@@ -1,0 +1,37 @@
+.err-404 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.err404-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 400px;
+  text-align: center;
+  gap: 10px;
+}
+
+.err404-box img {
+  width: 80px;
+  height: 80px;
+}
+
+.err404-box p {
+  font-size: 0.9rem;
+}
+/*# sourceMappingURL=page404.css.map */

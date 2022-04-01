@@ -1,2 +1,51 @@
-@import './assets/css/variables.scss'
+.text-bold {
+  font-weight: bold;
+}
 
+.text-light {
+  color: #777;
+}
+
+// APP DEFAULT BUTTONS
+.btn {
+  padding: 5px 15px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.btn-primary {
+  border: solid 2px #3498db;
+}
+
+// CIRCULAR ROUND BUTTON WITH ICON
+.circular-icon-btn {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: #eee;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+// PADDINGS
+
+// PADDINGS RIGHT
+
+.pe-5 {
+  padding-right: 5px !important;
+}
+
+.pe-8 {
+  padding-right: 8px !important;
+}
