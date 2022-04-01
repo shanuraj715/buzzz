@@ -31,19 +31,11 @@ ul{
     display: flex;
     gap: 15px;
 }
-.content ul li {
 
-}
-.btn {
-  border-radius: 50%;
+.header-btn {
   width: 35px;
   height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  background-color: #eee;
+  
 }
 
 .header-user-img{

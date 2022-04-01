@@ -1,3 +1,5 @@
+@import "../../assets/css/variables.scss";
+
 .feeds-container {
   display: flex;
 }
@@ -162,4 +164,12 @@
     border: none;
     outline: none;
   }
+}
+@media screen and (min-width:$screen4-width) {
+
+  .feed-col1 , .feed-col3 {
+    display: initial;
+  }
+ 
+  
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
+import Header from "../../Components/Header/Header";
+
 
 function Home() {
   return (

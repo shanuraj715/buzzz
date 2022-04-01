@@ -19,12 +19,12 @@ function Header() {
               <span>Shobit Khannatri</span>
             </li>
             <li>
-              <button className="btn">
+              <button className="circular-icon-btn header-btn">
                 <Icon classes="fa-comment" type="regular" />
               </button>
             </li>
             <li>
-              <button className="btn">
+              <button className="circular-icon-btn header-btn">
                 <Icon classes="fa-user-alt" type="solid" />
               </button>
             </li>
