@@ -1,0 +1,50 @@
+@import "./variables.scss";
+
+
+
+.container {
+  max-width: $container1-width;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.container-fluid {
+  width: 100%;
+}
+
+@media screen and (min-width: $screen2-width) {
+  .container {
+    max-width: $container2-width;
+  }
+}
+
+@media screen and (min-width: $screen3-width) {
+  .container {
+    max-width: $container3-width;
+  }
+}
+
+@media screen and (min-width: $screen4-width) {
+  .container {
+    max-width: $container4-width;
+  }
+}
+
+@media screen and (min-width: $screen5-width) {
+  .container {
+    max-width: $container5-width;
+  }
+}
+
+@media screen and (min-width: $screen6-width) {
+  .container {
+    max-width: $container6-width;
+  }
+}
+
+@media screen and (min-width: $screen7-width) {
+  .container {
+    max-width: $container7-width;
+  }
+}
