@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../../Components/FontAwesome/FontAwesome";
+import Header from "../../Components/Header/Header";
 
 function Home() {
   return (
@@ -7,7 +8,9 @@ function Home() {
       {/* Import Header here */}
 
       {/* Main page div container */}
-      <div className="container"></div>
+       <Header/>
+      <div className="container">
+      </div>
     </>
   );
 }
