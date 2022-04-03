@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,aAAa,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,GAAG,EAAE,IAAI;EACT,qBAAqB,EAAE,6BAA6B;EACpD,OAAO,EAAE,IAAI;CACd;;AAED,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EACjC,AAAA,aAAa,CAAC;IACZ,qBAAqB,EAAE,6BAA6B;GACrD;;;AAGH,MAAM,CAAC,MAAM,MAAM,SAAS,EAAE,KAAK;EACjC,AAAA,aAAa,CAAC;IACZ,qBAAqB,EAAE,6BAA6B;GACrD",
+    "sources": [
+        "friends.scss",
+        "../../assets/css/variables.scss"
+    ],
+    "names": [],
+    "file": "friends.css"
+}

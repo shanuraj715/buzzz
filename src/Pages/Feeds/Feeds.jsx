@@ -1,10 +1,9 @@
 import React from "react";
-import "./feeds.css";
+import "./feeds.scss";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
 import Background from "../../Components/PageBackground/PageBackground";
 import FeedCard from "./components/FeedCard/FeedCard";
-
 
 function Feeds() {
   return (
@@ -16,8 +15,7 @@ function Feeds() {
       <div className="container feeds-container">
         <div className="feed-col1">Shanu Raj</div>
         <div className="feed-col2">
-          
-         <FeedCard />
+          <FeedCard />
         </div>
         <div className="feed-col3">Saksham Raj</div>
       </div>

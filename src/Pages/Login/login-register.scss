@@ -1,0 +1,145 @@
+@import "../../assets/css/variables.scss";
+
+.login-register {
+  width: 100%;
+  flex-grow: 1;
+  padding: 15px;
+  display: flex;
+  gap: 50px;
+  max-width: 400px;
+  flex-direction: column;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.custom-lr {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+  padding: 20px 10px;
+  flex-grow: 1;
+
+  h3 {
+    text-align: center;
+  }
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    flex-grow: 1;
+  }
+}
+
+.lr-form-title {
+}
+
+.lr-inp-row {
+  display: flex;
+  border-bottom: solid 1px rgb(211, 211, 211);
+
+  input::placeholder {
+    color: #bbb;
+  }
+}
+
+.lr-inp {
+  flex-grow: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+}
+
+.login-rf {
+  display: flex;
+  div:first-child {
+    flex-grow: 1;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    opacity: 0.4;
+  }
+  div:nth-child(2) {
+    color: #2d98da;
+    opacity: 0.5;
+  }
+}
+
+form {
+}
+
+.lr-btns {
+  display: flex;
+  justify-content: center;
+}
+
+// GOOGLE SIGN IN SECTION
+
+.google-lr {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border-top: solid 1px #ccc;
+  padding: 20px 10px;
+  flex-grow: 1;
+}
+
+.lr-logo-cont1,
+.lr-logo-cont2 {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+    max-width: 160px;
+  }
+}
+
+.lr-logo-cont2 {
+  display: none;
+}
+
+.lr-text1 {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  p:first-child {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  p:nth-child(2) {
+    text-align: center;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (min-width: $screen3-width) {
+  .login-register {
+    flex-direction: row;
+    gap: 25px;
+    max-width: 880px;
+  }
+
+  .lr-logo-cont2 {
+    display: flex;
+  }
+
+  .lr-logo-cont1 {
+    display: none;
+  }
+
+  .custom-lr {
+    order: 1;
+    width: 50%;
+  }
+
+  .google-lr {
+    border: none;
+    width: 50%;
+  }
+}

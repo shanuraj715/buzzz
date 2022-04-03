@@ -1,5 +1,5 @@
 import React from "react";
-import "./pagebackground.css";
+import "./pagebackground.scss";
 
 function PageBackground() {
   return (

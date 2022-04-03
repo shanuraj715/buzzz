@@ -6,6 +6,12 @@
   color: #777;
 }
 
+.to-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 // APP DEFAULT BUTTONS
 .btn {
   padding: 5px 15px;

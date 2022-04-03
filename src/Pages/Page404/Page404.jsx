@@ -1,5 +1,5 @@
 import React from "react";
-import "./page404.css";
+import "./page404.scss";
 import BrokenLink from "../../assets/images/broken-link.svg";
 import PageBackground from "../../Components/PageBackground/PageBackground";
 import { Link } from "react-router-dom";
