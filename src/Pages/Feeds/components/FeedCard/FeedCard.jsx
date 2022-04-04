@@ -16,6 +16,8 @@ function FeedCard() {
             <span className="feed-date text-light">December 5, 1996</span>
           </div>
         </div>
+
+       
         <button className="circular-icon-btn">
           <Icon type="solid" classes="fa-ellipsis-h" />
         </button>

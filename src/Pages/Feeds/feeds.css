@@ -2,10 +2,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 25px;
+  padding: 20px 0;
 }
 
 .feed-col1 {
   display: none;
+  min-width: 220px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 4px;
 }
 
 .feed-col2 {
@@ -24,6 +31,11 @@
 
 .feed-col3 {
   display: none;
+  min-width: 240px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 4px;
 }
 
 .feed-card {
@@ -225,7 +237,14 @@
 
 @media screen and (min-width: 992px) {
   .feed-col1, .feed-col3 {
-    display: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 20px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 /*# sourceMappingURL=feeds.css.map */
