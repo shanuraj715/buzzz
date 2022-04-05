@@ -4,7 +4,6 @@
   display: grid;
   gap: 15px;
   grid-template-columns: repeat(1, minmax(280px, 1fr));
-  padding: 10px;
 }
 
 @media screen and (min-width: $screen3-width) {

@@ -13,8 +13,8 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  top: 25px;
-  right: 25px;
+  top: 40px;
+  right: 30px;
   div {
     display: flex;
     flex-direction: column;
@@ -48,6 +48,7 @@
   text-align: left;
   padding: 8px;
   border-radius: 5px;
+  font-size: 0.9rem;
   cursor: pointer;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

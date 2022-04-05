@@ -2,6 +2,8 @@
 
 .feeds-container {
   display: flex;
+  gap: 25px;
+  padding: 25px 0;
 }
 
 .feed-col1 {
@@ -165,11 +167,11 @@
     outline: none;
   }
 }
-@media screen and (min-width:$screen4-width) {
-
-  .feed-col1 , .feed-col3 {
+@media screen and (min-width: $screen4-width) {
+  .feed-col1,
+  .feed-col3 {
     display: initial;
+
+    min-width: 25%;
   }
- 
-  
 }

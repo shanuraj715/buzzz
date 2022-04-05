@@ -5,18 +5,20 @@ import ShanuPlaceholder from "../../../../assets/images/shanu-placeholder.jpg";
 import { Link } from "react-router-dom";
 import ContextMenu from "../ContextMenu/ContextMenu";
 
-function FriendCard() {
+function FriendCard(prop) {
   const [contextMenu, setContextMenu] = useState(false);
 
   return (
     <>
       <div className="friend-card">
         <div className="friend-card-img-cont">
-          <img src={ShanuPlaceholder} alt="" />
+          <Link to={`/profile/${prop.username}`}>
+            <img src="https://picsum.photos/200/200" alt="" />
+          </Link>
         </div>
         <div className="friend-card-text">
           <p className="">Shanu Raj</p>
-          <Link to="/" className="text-light">
+          <Link to={`/profile/${prop.username}`} className="text-light">
             shanuraj715
           </Link>
         </div>
@@ -31,10 +33,7 @@ function FriendCard() {
         {contextMenu ? (
           <ContextMenu
             outsideClick={() => setContextMenu(false)}
-            btns={[
-              { icon: "fa-user", text: "View Profile" },
-              { icon: "fa-ban", text: "Unfriend Shanu" },
-            ]}
+            data={prop.contextMenuBtns}
           />
         ) : null}
       </div>

@@ -2,6 +2,8 @@ import React from 'react';
 // import { createRoot } from 'react-dom/client';
 import './index.css';
 import './assets/css/layout.scss'
+import './assets/css/scrollbars.scss'
+import './assets/css/animations.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
