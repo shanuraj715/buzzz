@@ -1,23 +1,37 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+// import { createRoot } from 'react-dom/client';
 import './index.css';
-import './assets/css/layout.css'
+import './assets/css/layout.scss'
+import './assets/css/scrollbars.scss'
+import './assets/css/animations.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
-
+import ReactDOM from 'react-dom'
+import { HelmetProvider } from 'react-helmet-async'
 
 // For React 18
-const appElement = document.getElementById('buzzz-app')
-const app = createRoot(appElement)
+// const appElement = document.getElementById('buzzz-app')
+// const app = createRoot(appElement)
 
-app.render(
+// app.render(
+//   <React.StrictMode>
+//     <BrowserRouter>
+//       <App />
+//     </BrowserRouter>
+//   </React.StrictMode>
+// );
+
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </BrowserRouter>
-  </React.StrictMode>
-);
+  </React.StrictMode>,
+  document.getElementById('buzzz-app')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

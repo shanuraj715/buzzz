@@ -1,5 +1,5 @@
 import React from "react";
-import "./feeds.css";
+import "./feeds.scss";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
 import Background from "../../Components/PageBackground/PageBackground";
@@ -12,7 +12,6 @@ import CardPlaceholder from "../../assets/images/1280x720.jpg";
 import Like from "../../assets/images/reaction-like.svg";
 import Heart from "../../assets/images/reaction-heart.svg";
 import Cards from "./components/Cards/Cards"
-
 
 function Feeds() {
   const myContacts = [
@@ -31,6 +30,7 @@ function Feeds() {
       <div className="container feeds-container">
         <div className="feed-col1">Shobit khatri</div>
         <div className="feed-col2">
+<<<<<<< HEAD
           <NewPost />
 
           <FeedCard
@@ -56,6 +56,9 @@ function Feeds() {
             isBtnVisible="true"
             click={() => alert("Click ho gya")}
           />
+=======
+          <FeedCard />
+>>>>>>> 5e51176f7b7da56205df12091bc2cc5a36ad7bef
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./classic.css";
+import "./classic.scss";
 
 function Classic(prop) {
   return (

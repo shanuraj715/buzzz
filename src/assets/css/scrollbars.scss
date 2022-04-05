@@ -1,0 +1,26 @@
+.scrollbar1 {
+  --body-bg-color: #e3e3e3;
+  --scroll-color: rgb(158, 158, 158);
+  --scroll--hover-color: #666;
+  --scroll-track-color: rgba(165, 165, 165, 0);
+}
+
+.scrollbar1::-webkit-scrollbar-track {
+  background: linear-gradient(
+    to right,
+    var(--scroll-track-color) 0%,
+    var(--scroll-track-color) 30%,
+    var(--scroll-color) 60%,
+    var(--body-bg-color) 61%,
+    var(--body-bg-color) 100%
+  );
+}
+
+.scrollbar1::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar1::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-color);
+  border-radius: 4px;
+}
