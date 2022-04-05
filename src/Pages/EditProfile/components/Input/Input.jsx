@@ -31,6 +31,7 @@ Input.propTypes = {
     PropTypes.string,
     PropTypes.bool,
   ]),
+  title: PropTypes.string,
   autoComplete: PropTypes.string,
 };
 

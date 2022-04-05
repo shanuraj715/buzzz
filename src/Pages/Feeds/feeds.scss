@@ -2,13 +2,8 @@
 
 .feeds-container {
   display: flex;
-<<<<<<< HEAD
-  gap:25px;
-  padding:20px 0;
-=======
   gap: 25px;
   padding: 25px 0;
->>>>>>> 5e51176f7b7da56205df12091bc2cc5a36ad7bef
 }
 
 .feed-col1 {
@@ -180,28 +175,11 @@
     outline: none;
   }
 }
-<<<<<<< HEAD
-@media screen and (min-width:$screen4-width) {
-
-  .feed-col1 , .feed-col3 {
+@media screen and (min-width: $screen4-width) {
+  .feed-col1,
+  .feed-col3 {
     display: flex;
     gap: 20px;
     flex-direction: column;
   }
- 
-  
 }
-
-
-
-
-=======
-@media screen and (min-width: $screen4-width) {
-  .feed-col1,
-  .feed-col3 {
-    display: initial;
-
-    min-width: 25%;
-  }
-}
->>>>>>> 5e51176f7b7da56205df12091bc2cc5a36ad7bef

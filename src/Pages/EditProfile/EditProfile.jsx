@@ -4,9 +4,9 @@ import { Helmet } from "react-helmet-async";
 import PageBackground from "../../Components/PageBackground/PageBackground";
 import config from "../../config.json";
 import Header from "../../Components/Header/Header";
-import Icon from "../../Components/FontAwesome/FontAwesome";
 import DropDown from "./components/DropDown/DropDown";
 import Input from "./components/Input/Input";
+import ProfileUserImage from "../../Components/ProfileUserImage/ProfileUserImage";
 
 function EditProfile() {
   const [statesVisible, setStatesVisible] = useState(false);
@@ -36,7 +36,7 @@ function EditProfile() {
 
   const states = [
     {
-      btnText: "Punjab",
+      btnText: 55,
       click: function () {
         dropDownStatesClickHandler(this.btnText);
       },
@@ -151,22 +151,11 @@ function EditProfile() {
       <Header />
       <div className="container feeds-container">
         <div className="feed-col2 white-bg">
-          <div className="profile-header">
-            <div className="profile-cover-cont">
-              <img src="https://picsum.photos/1000/200" alt="" />
-            </div>
-            <div className="profile-user-img-cont">
-              <img src="https://picsum.photos/200/200" alt="" />
-              <button className="">
-                <Icon classes="fa-camera" type="solid" />
-              </button>
-            </div>
-          </div>
+          <ProfileUserImage />
           <div className="profile-data-cont">
             <div className="profile-text-data">
               <h2>Shanu Raj</h2>
             </div>
-
             <div className="profile-edit-row">
               <Input
                 title="First Name"
