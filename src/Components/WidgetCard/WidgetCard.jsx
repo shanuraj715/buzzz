@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from '../FontAwesome/FontAwesome'
 import WidgetRow from '../WidgetRow/WidgetRow'
-import './widgetcard.css'
+import './widgetcard.scss'
 
 function WidgetCard(props) {
   return (
@@ -13,7 +13,7 @@ function WidgetCard(props) {
         </button>
       </div>
 
-      <div className="widget-data-list">
+      <div className="widget-data-list scrollbar1">
         {props.data?.map((item, index) => (
           <WidgetRow obj={item} isBtnVisible={props.isBtnVisible} click={props.click} />
         ))}

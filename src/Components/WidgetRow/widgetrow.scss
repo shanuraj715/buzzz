@@ -30,5 +30,7 @@
   span {
     color: #666;
     flex-grow: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }

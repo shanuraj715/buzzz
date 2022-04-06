@@ -1,5 +1,5 @@
 import React from "react";
-import "./widgetrow.css";
+import "./widgetrow.scss";
 
 function WidgetCard(props) {
   return (
