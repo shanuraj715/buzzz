@@ -9,6 +9,7 @@ import Image from "../../assets/images/shobit.jpg";
 import WidgetCard from "../../Components/WidgetCard/WidgetCard";
 import Placeholder from "../../assets/images/shobit.jpg";
 import CardPlaceholder from "../../assets/images/1280x720.jpg";
+import UserCard from "./components/UserCard/UserCard";
 import Like from "../../assets/images/reaction-like.svg";
 import Heart from "../../assets/images/reaction-heart.svg";
 
@@ -42,7 +43,9 @@ function Feeds() {
       </Helmet>
       <Background />
       <div className="container feeds-container">
-        <div className="feed-col1">Shobit khatri</div>
+        <div className="feed-col1">
+          <UserCard img ={Image} bgImage="https://picsum.photos/400/160" />
+          </div>
         <div className="feed-col2">
           <NewPost />
 
