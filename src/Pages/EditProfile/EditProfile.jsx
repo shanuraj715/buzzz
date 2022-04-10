@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./editprofile.scss";
 import { Helmet } from "react-helmet-async";
 import PageBackground from "../../Components/PageBackground/PageBackground";
@@ -7,8 +7,18 @@ import Header from "../../Components/Header/Header";
 import DropDown from "./components/DropDown/DropDown";
 import Input from "./components/Input/Input";
 import ProfileUserImage from "../../Components/ProfileUserImage/ProfileUserImage";
+import WidgetCard from "../../Components/WidgetCard/WidgetCard";
+import options from "./options.json";
+import Cookie from "universal-cookie";
+import toast from "react-hot-toast";
+import Buttons from "../../Components/Buttons/Classic";
+import Loading from "../../Components/Loading/Loading";
+import ProfileImageUploader from "./components/ProfileImageUploader/ProfileImageUploader";
+
+const cookie = new Cookie();
 
 function EditProfile() {
+  const [isLoading, setIsLoading] = useState(false);
   const [statesVisible, setStatesVisible] = useState(false);
   const [designationVisible, setDesignationVisible] = useState(false);
 
@@ -17,7 +27,6 @@ function EditProfile() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [designation, setDesgnation] = useState("");
-
   const [website, setWebsite] = useState("");
   const [birthday, setBirthday] = useState("");
   const [city, setCity] = useState("");
@@ -34,113 +43,95 @@ function EditProfile() {
     setDesignationVisible(false);
   };
 
-  const states = [
-    {
-      btnText: 55,
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Haryana",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Uttar Pradesh",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Himachal Pradesh",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Bihar",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Assam",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Maharastra",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Rajsthan",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Uttrakhand",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Jharkhand",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Kerla",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Jammu & Kashmir",
-      click: function () {
-        dropDownStatesClickHandler(this.btnText);
-      },
-    },
-  ];
+  useEffect(() => {
+    getData();
+  }, []);
 
-  const designations = [
-    {
-      btnText: "Co-founder",
-      click: function () {
-        dropDownDesignationClickHandler(this.btnText);
+  const getData = () => {
+    const authToken = window.getAuthToken();
+    if (!authToken) {
+      toast.error("Something error happened. Please refresh the page");
+      return;
+    }
+    setIsLoading(true);
+    fetch(`${config.API_URL}profile/${cookie.get("uid")}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authToken: authToken,
       },
-    },
-    {
-      btnText: "Manager",
-      click: function () {
-        dropDownDesignationClickHandler(this.btnText);
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw new Error("");
+      })
+      .then((json) => {
+        if (json.status) {
+          // SET STATES
+          setGender(json.data.gender);
+          setFname(json.data.firstname);
+          setLname(json.data.lastname);
+          setDesgnation(json.data.designation);
+          setBirthday(json.data.birthday);
+          setCity(json.data.city);
+          setState(json.data.state);
+          setWebsite(json.data.website);
+          setZip(json.data.zip);
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Something wrong happened. Please reload the page.");
+        setIsLoading(false);
+      });
+  };
+
+  const updateData = () => {
+    const authToken = window.getAuthToken();
+    if (!authToken) {
+      toast.error("Something error happened. Please refresh the page");
+      return;
+    }
+    setIsLoading(true);
+    fetch(`${config.API_URL}profile/update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authToken: authToken,
       },
-    },
-    {
-      btnText: "CEO",
-      click: function () {
-        dropDownDesignationClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Intern",
-      click: function () {
-        dropDownDesignationClickHandler(this.btnText);
-      },
-    },
-    {
-      btnText: "Trainee",
-      click: function () {
-        dropDownDesignationClickHandler(this.btnText);
-      },
-    },
-  ];
+      body: JSON.stringify({
+        fname: fname,
+        lname: lname,
+        designation: designation,
+        website: website,
+        gender: gender,
+        birthday: birthday,
+        city: city,
+        state: state,
+        zip: zip,
+      }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw new Error("");
+      })
+      .then((json) => {
+        if (json.status) {
+          toast.success("Profile Updated");
+        } else {
+          toast.error(json.message ?? "");
+        }
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Something wrong happened. Please reload the page.");
+        setIsLoading(false);
+      });
+  };
 
   return (
     <>
@@ -148,6 +139,7 @@ function EditProfile() {
         <title>Edit Profile | {config.APP_NAME}</title>
       </Helmet>
       <PageBackground />
+      {/* <ProfileImageUploader /> */}
       <Header />
       <div className="container feeds-container">
         <div className="feed-col2 white-bg">
@@ -185,7 +177,8 @@ function EditProfile() {
               >
                 {designationVisible ? (
                   <DropDown
-                    list={designations}
+                    onSelect={dropDownDesignationClickHandler}
+                    list={options.designations}
                     outClick={() => setDesignationVisible(false)}
                   />
                 ) : null}
@@ -224,7 +217,7 @@ function EditProfile() {
                 type=""
                 click={() => {}}
                 change={(e) => setBirthday(e.target.value)}
-                placeholder="31-03-1997"
+                placeholder="1997-03-31"
                 autoComplete=""
                 value={birthday}
               />
@@ -252,7 +245,8 @@ function EditProfile() {
                 >
                   {statesVisible ? (
                     <DropDown
-                      list={states}
+                      onSelect={dropDownStatesClickHandler}
+                      list={options.states}
                       outClick={() => setStatesVisible(false)}
                     />
                   ) : null}
@@ -271,10 +265,21 @@ function EditProfile() {
                 />
               </div>
             </div>
+            <div className="profile-update-btn-cont">
+              <Buttons type="primary" click={updateData}>
+                Cancel
+              </Buttons>
+              <Buttons type="secondary" click={updateData}>
+                Update
+              </Buttons>
+            </div>
           </div>
         </div>
-        <div className="feed-col3">Saksham Raj</div>
+        <div className="feed-col3">
+          <WidgetCard title="Suggestions" data={[]} />
+        </div>
       </div>
+      {isLoading ? <Loading /> : null}
     </>
   );
 }
