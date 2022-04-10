@@ -15,6 +15,7 @@ function App() {
 
   return (
     <>
+      <Toaster position="bottom-left" reverseOrder={false} />
 
       <Switch>
         <Route path="/" exact component={Home} />
@@ -27,7 +28,6 @@ function App() {
         <Route path='*' component={Page404} />
       </Switch>
 
-      <Toaster position="bottom-left" reverseOrder={false} />
     </>
   );
 }

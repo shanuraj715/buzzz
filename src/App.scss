@@ -6,6 +6,14 @@
   color: #777;
 }
 
+.text-red {
+  color: #c0392b;
+}
+
+.text-green {
+  color: #27ae60;
+}
+
 .to-center {
   display: flex;
   align-items: center;
@@ -37,6 +45,10 @@
   border: solid 2px #3498db;
 }
 
+.btn-secondary {
+  border: solid 2px #00af43;
+}
+
 // CIRCULAR ROUND BUTTON WITH ICON
 .circular-icon-btn {
   border-radius: 50%;
@@ -49,6 +61,16 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+.popup-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(39, 39, 39, 0.3);
+  z-index: 2000;
 }
 
 // PADDINGS
