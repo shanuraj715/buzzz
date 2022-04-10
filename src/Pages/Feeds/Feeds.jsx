@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./feeds.scss";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
@@ -9,12 +9,27 @@ import Image from "../../assets/images/shobit.jpg";
 import WidgetCard from "../../Components/WidgetCard/WidgetCard";
 import Placeholder from "../../assets/images/shobit.jpg";
 import CardPlaceholder from "../../assets/images/1280x720.jpg";
+import UserCard from "./components/UserCard/UserCard";
 import Like from "../../assets/images/reaction-like.svg";
 import Heart from "../../assets/images/reaction-heart.svg";
-import Cards from "./components/Cards/Cards";
 
 function Feeds() {
   const myContacts = [
+    {
+      name: "Shobit khatri",
+      image: Image,
+    },
+    { name: "Shanu raj", image: Image },
+    {
+      name: "Shobit khatri",
+      image: Image,
+    },
+    { name: "Shanu raj", image: Image },
+    {
+      name: "Shobit khatri",
+      image: Image,
+    },
+    { name: "Shanu raj", image: Image },
     {
       name: "Shobit khatri",
       image: Image,
@@ -28,7 +43,9 @@ function Feeds() {
       </Helmet>
       <Background />
       <div className="container feeds-container">
-        <div className="feed-col1">Shobit khatri</div>
+        <div className="feed-col1">
+          <UserCard img ={Image} bgImage="https://picsum.photos/400/160" />
+          </div>
         <div className="feed-col2">
           <NewPost />
 
@@ -45,7 +62,6 @@ function Feeds() {
             dislike="Dislike"
             comment="comment"
           />
-          <Cards />
         </div>
         <div className="feed-col3">
           <WidgetCard data={myContacts} title="Contacts" />

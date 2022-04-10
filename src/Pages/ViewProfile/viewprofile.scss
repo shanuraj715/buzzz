@@ -1,0 +1,26 @@
+.profile-data-cont{
+    span{
+        font-size:20px;
+    }
+}
+
+.Add-visit{
+    display: flex;
+    gap:15px;
+    position: relative;
+    top:10%;
+    button{
+        padding: 15px 25px;
+        background-color:transparent ;
+        border: 1px solid blue;
+        font-size: 18px;
+        border-radius: 4px;
+        
+    }
+}
+
+.Add-visit{
+    button:hover{
+        background-color: #1b74e4;
+    }
+}

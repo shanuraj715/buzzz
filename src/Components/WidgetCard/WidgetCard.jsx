@@ -15,7 +15,7 @@ function WidgetCard(props) {
         </button>
       </div>
 
-      <div className="widget-data-list">
+      <div className="widget-data-list scrollbar1">
         {props.data?.map((item, index) => (
           <WidgetRow
             obj={item}

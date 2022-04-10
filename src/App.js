@@ -10,6 +10,7 @@ import Register from './Pages/Register/Register'
 import Page404 from './Pages/Page404/Page404'
 import Friends from './Pages/Friends/Friends'
 import EditProfile from './Pages/EditProfile/EditProfile'
+import ViewProfile from './Pages/ViewProfile/ViewProfile'
 
 function App() {
 
@@ -23,9 +24,10 @@ function App() {
         <Route path='/login' exact component={Login} />
         <Route path='/register' exact component={Register} />
         <Route path="/friends" exact component={Friends} />
-        <Route path='/profile/view/:id' exact component={EditProfile} />
         <Route path="/profile/edit/" exact component={EditProfile} />
+        <Route path='/profile/view/:id' exact component={ViewProfile} />
         <Route path='*' component={Page404} />
+
       </Switch>
 
     </>
@@ -33,3 +35,5 @@ function App() {
 }
 
 export default App;
+
+

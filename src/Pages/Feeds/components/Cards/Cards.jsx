@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../../../../Components/FontAwesome/FontAwesome";
-import "./cards.css";
-
-function Cards() {
+import "./cards.scss";
+import images from "../../../../assets/images/shobit.jpg";
+import CreatePost from "../CreatePost/CreatePost";
+import Circular from "../Circular Image/Circular";
+import PhotosCard from "../Photos Card/PhotosCard";
+function Cards(props) {
+  const [isImageSelected, setisImageSelected] = useState(false);
   return (
     <div className="card-bg">
       <div className="main-card">
-        <div className="create">
-          <span>Create Post</span>
-
-          <button className="circular-icon-btn">
-            <Icon type="solid" classes=" fa-times" />
-          </button>
+    <CreatePost text="Create Post" hide={props.hideCard} />
+        <Circular text = "Shobit khatri" img = {images}/>
+        <div className="photos-card">
+         <PhotosCard text = "Add Photo"/>
         </div>
-        {/* sfdagfsda
-        <p>sfdgfsjda</p> */}
+        <div className="post-button">
+          <button>Post</button>
+        </div>
       </div>
     </div>
   );
