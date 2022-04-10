@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageBackground from "../../Components/PageBackground/PageBackground";
 import "./login-register.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Button from "../../Components/Buttons/Buttons2";
 import Logo from "../../assets/images/logo.png";
 import Input from "../../Components/Inputs/InputText";
@@ -22,11 +22,13 @@ function Login() {
     ls.getObject("login-cred").isChecked || false
   );
 
+  const [redirectTo, setRedirectTo] = useState("");
+
   const rememberLoginInfo = () => {
     ls.setObject("login-cred", { username, password, isChecked });
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     // VALIDATE USER DATA
     if (!isLength(username, { min: 6, max: 32 })) {
@@ -41,14 +43,40 @@ function Login() {
 
     isChecked ? rememberLoginInfo() : ls.remove("login-cred");
 
-    alert("SENDING");
-
     // SEND DATA TO SERVER
-    // @TODO Send data to server
+    fetch(config.API_URL + "login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: username, password: password }),
+      credentials: "include", // this will allow cookies to store in cross origin requests
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("");
+        }
+
+        ls.set("auth-token", res.headers.get("x-auth-token"));
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        if (json.status) {
+          toast.success("Successfully logged in");
+          setRedirectTo("/feeds");
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <>
+      {redirectTo !== "" ? <Redirect to={redirectTo} /> : null}
       <Helmet>
         <title>Login to your account | {config.APP_NAME}</title>
       </Helmet>

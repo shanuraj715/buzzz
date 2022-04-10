@@ -9,18 +9,12 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import Cookie from 'universal-cookie'
 
-// For React 18
-// const appElement = document.getElementById('buzzz-app')
-// const app = createRoot(appElement)
-
-// app.render(
-//   <React.StrictMode>
-//     <BrowserRouter>
-//       <App />
-//     </BrowserRouter>
-//   </React.StrictMode>
-// );
+const cookie = new Cookie()
+window.getAuthToken = () => {
+  return cookie.get('authToken')
+}
 
 ReactDOM.render(
   <React.StrictMode>

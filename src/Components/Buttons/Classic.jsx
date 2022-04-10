@@ -6,7 +6,9 @@ function Classic(prop) {
   return (
     <button
       className={`btn btn-${
-        (prop.type || "primary") + prop.classes + prop.theme
+        (prop.type || "primary") + " " + prop.classes + " " ??
+        " " + prop.theme ??
+        ""
       }`}
       onClick={prop.click}
     >

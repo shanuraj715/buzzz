@@ -12,7 +12,7 @@ function DropDown(prop) {
             <button
               key={index}
               className={`text-light ${item.classes || ""}`}
-              onClick={() => item.click()}
+              onClick={() => prop.onSelect(item.btnText)}
             >
               {item.btnText}
             </button>

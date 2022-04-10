@@ -1,7 +1,9 @@
 import React from "react";
-import Icon from '../FontAwesome/FontAwesome'
-import WidgetRow from '../WidgetRow/WidgetRow'
-import './widgetcard.scss'
+import Icon from "../FontAwesome/FontAwesome";
+import WidgetRow from "../WidgetRow/WidgetRow";
+import "./widgetcard.css";
+
+import PropTypes from "prop-types";
 
 function WidgetCard(props) {
   return (
@@ -15,11 +17,21 @@ function WidgetCard(props) {
 
       <div className="widget-data-list scrollbar1">
         {props.data?.map((item, index) => (
-          <WidgetRow obj={item} isBtnVisible={props.isBtnVisible} click={props.click} />
+          <WidgetRow
+            obj={item}
+            isBtnVisible={props.isBtnVisible}
+            click={props.click}
+            key={index}
+          />
         ))}
       </div>
     </div>
   );
 }
+
+WidgetCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+};
 
 export default WidgetCard;

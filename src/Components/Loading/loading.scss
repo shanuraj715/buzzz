@@ -1,0 +1,24 @@
+.loading-bg {
+  min-height: 100vh;
+  max-height: 100vh;
+  min-width: 100vw;
+  max-width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(53, 59, 72, 0.2);
+}
+
+.loading-img-container {
+  width: 110px;
+  height: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
