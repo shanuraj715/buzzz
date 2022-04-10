@@ -1,4 +1,5 @@
 import React from 'react';
+import './usercard.scss';
 
 function UserCard(props) {
   return (
