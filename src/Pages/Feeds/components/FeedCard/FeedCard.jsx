@@ -3,7 +3,7 @@ import Icon from "../../../../Components/FontAwesome/FontAwesome";
 import PostMeta from "./Components/PostMeta/PostMeta";
 import PostMedia from "./Components/PostMedia/PostMedia";
 import Reactions from "./Components/Reactions/Reactions";
-import ReactionBtn from "../ReactionsBtn/ReactionBtn";
+import ReactionBtns from "../ReactionsBtn/ReactionBtn";
 
 function FeedCard(props) {
   return (
@@ -16,7 +16,7 @@ function FeedCard(props) {
       />
       <PostMedia postimage = {props.postimage}/>
       <Reactions likereaction = {props.likereaction} heartreaction = {props.heartreaction} comments = {props.comments}/>
-     <ReactionBtn like = {props.like} dislike = {props.dislike} comment = {props.comment}/>
+     <ReactionBtns />
       <div className="feed-comment-cont">
         <div className="fc-user-img">
           <img src={props.authorImage} alt="" />

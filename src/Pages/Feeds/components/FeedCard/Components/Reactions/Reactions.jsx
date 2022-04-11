@@ -17,7 +17,7 @@ function Reactions(props) {
           </div>
         </div>
         <div className="feed-reaction-comment">
-          <span>{props.comments}</span>
+          <span>{`${props.comments} ${props.comments > 1 ? 'Comments' : 'Comment'}`}</span>
         </div>
       </div>
     </>

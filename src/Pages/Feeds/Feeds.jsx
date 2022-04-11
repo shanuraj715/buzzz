@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./feeds.scss";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
@@ -14,6 +14,35 @@ import Like from "../../assets/images/reaction-like.svg";
 import Heart from "../../assets/images/reaction-heart.svg";
 
 function Feeds() {
+  const [feeds, setFeeds] = useState([]);
+
+  useEffect(() => {
+    fetchFeeds()
+    // console.log(window.getAuthToken())
+    
+  }, []);
+
+  const fetchFeeds = () => {
+    fetch(`${config.API_URL}feeds`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.status) {
+          setFeeds(json.data);
+        }
+      });
+  }
+
   const myContacts = [
     {
       name: "Shobit khatri",
@@ -44,24 +73,24 @@ function Feeds() {
       <Background />
       <div className="container feeds-container">
         <div className="feed-col1">
-          <UserCard img ={Image} bgImage="https://picsum.photos/400/160" />
-          </div>
+          <UserCard img={Image} bgImage="https://picsum.photos/400/160" />
+        </div>
         <div className="feed-col2">
-          <NewPost />
+          <NewPost refresh={fetchFeeds} />
 
-          <FeedCard
-            text="Shobit khatri"
-            authorImage={Placeholder}
-            date="05-December-2022"
-            description="It is an object which stores the value of attributes of a tag and work similar to the HTML attributes. It gives a way to pass data from one component to other components. It is similar to function arguments. "
-            postimage={CardPlaceholder}
-            likereaction={Like}
-            heartreaction={Heart}
-            comments="12 Comments"
-            like="Like"
-            dislike="Dislike"
-            comment="comment"
-          />
+          {feeds.map((item, index) => (
+            <FeedCard
+              key={index}
+              text="Shobit khatri"
+              authorImage={Placeholder}
+              date="05-December-2022"
+              description={item.postText}
+              postimage={CardPlaceholder}
+              likereaction={Like}
+              heartreaction={Heart}
+              comments={2}
+            />
+          ))}
         </div>
         <div className="feed-col3">
           <WidgetCard data={myContacts} title="Contacts" />
