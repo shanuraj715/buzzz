@@ -7,15 +7,15 @@ function ReactionBtn(props) {
        <div className="feed-reaction-btns">
         <button>
           <Icon classes="fa-thumbs-up pe-8" type="regular" />
-          {props.like}
+          Like
         </button>
         <button>
           <Icon classes="fa-thumbs-down pe-8" type="regular" />
-          {props.dislike}
+          Dislike
         </button>
         <button>
           <Icon classes="fa-comment-alt pe-8" type="regular" />
-          {props.comment}
+          Comment
         </button>
       </div>
     </>

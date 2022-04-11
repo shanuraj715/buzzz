@@ -12,11 +12,12 @@ function Cards(props) {
       <div className="main-card">
     <CreatePost text="Create Post" hide={props.hideCard} />
         <Circular text = "Shobit khatri" img = {images}/>
+        <input type="text" value={props.text} onChange={e => props.setText(e.target.value)} />
         <div className="photos-card">
          <PhotosCard text = "Add Photo"/>
         </div>
         <div className="post-button">
-          <button>Post</button>
+          <button onClick={props.postData}>Post</button>
         </div>
       </div>
     </div>
