@@ -1,6 +1,8 @@
 import './App.scss';
-import { Switch, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import config from './config.json'
 
 // APP PAGES
 import Home from './Pages/Home/Home'
@@ -13,12 +15,38 @@ import EditProfile from './Pages/EditProfile/EditProfile'
 
 function App() {
 
+  const [isLogged, setIsLogged] = useState(false)
+
+  useEffect(() => {
+
+    fetch(`${config.API_URL}session/validate`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken()
+      }
+    }).then(res => {
+      if (!res.status === 200) {
+        throw new Error("")
+      }
+      return res.json()
+    }).then(json => {
+      if (json.status) {
+        setIsLogged(!!json.logged)
+      }
+    })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }, [])
+
   return (
     <>
       <Toaster position="bottom-left" reverseOrder={false} />
 
       <Switch>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact render={() => <Redirect to={isLogged ? '/feeds' : '/login'} />} />
         <Route path='/feeds' exact component={Feeds} />
         <Route path='/login' exact component={Login} />
         <Route path='/register' exact component={Register} />
