@@ -1,15 +1,16 @@
 import React from "react";
 import "./Header.css";
 import Icon from "../../Components/FontAwesome/FontAwesome";
-import Image from '../../assets/images/50x50.png'
-// import Img from '../../assets/images/logo-text.png'
+import Image from "../../assets/images/50x50.png";
+import Img from "../../assets/images/logo-text.png";
+
 
 function Header() {
   return (
     <>
-      <header className="container-fluid customclass">
-        <div className="logo-img">
-         <h1>jdjsdjsd</h1>
+      <header className="container-fluid header">
+        <div>
+          <img classname="logo-img" src={Img} alt="" />
         </div>
         <div className="content">
           <ul>
