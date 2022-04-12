@@ -71,7 +71,7 @@
   overflow: hidden;
   display: flex;
 
-  img{
+  img {
     // width: 100%;
     max-height: 300px;
     margin: 0 auto;
@@ -131,13 +131,12 @@
 }
 
 @media screen and(min-width: $screen2-width ) {
-.feed-photo-upload{
-  display: none;
+  .feed-photo-upload {
+    display: none;
+  }
 }
 
-
-@media screen and(min-width: $screen2-width ){
-
+@media screen and(min-width: $screen2-width ) {
   .main-card {
     width: 500px;
   }

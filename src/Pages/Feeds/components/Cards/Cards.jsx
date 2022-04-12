@@ -6,11 +6,8 @@ import CreatePost from "../CreatePost/CreatePost";
 import Circular from "../Circular Image/Circular";
 import PhotosCard from "../Photos Card/PhotosCard";
 function Cards(props) {
-  
-
   const chooseImage = () => {
-    document.getElementById("feed-photo").click()
-
+    document.getElementById("feed-photo").click();
   };
 
   return (
@@ -24,20 +21,22 @@ function Cards(props) {
           value={props.text}
           onChange={(e) => props.setText(e.target.value)}
         />
-        <div className="photos-card">
-          <PhotosCard text="Add Photo" />
         <div className="photos-card" onClick={chooseImage}>
-          {props.fileToShow === '' ? (
+          {props.fileToShow === "" ? (
             <PhotosCard text="Add Photo" />
           ) : (
             <img src={props.fileToShow} alt="" />
           )}
-          
         </div>
         <div className="post-button">
           <button onClick={props.postData}>Post</button>
         </div>
-        <input type="file" id="feed-photo" className="feed-photo-upload" onChange={(e) => props.onSelect(e)} />
+        <input
+          type="file"
+          id="feed-photo"
+          className="feed-photo-upload"
+          onChange={(e) => props.onSelect(e)}
+        />
       </div>
     </div>
   );
