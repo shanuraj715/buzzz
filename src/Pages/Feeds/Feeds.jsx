@@ -10,16 +10,14 @@ import WidgetCard from "../../Components/WidgetCard/WidgetCard";
 import Placeholder from "../../assets/images/shobit.jpg";
 import CardPlaceholder from "../../assets/images/1280x720.jpg";
 import UserCard from "./components/UserCard/UserCard";
-import Like from "../../assets/images/reaction-like.svg";
-import Heart from "../../assets/images/reaction-heart.svg";
+import toast from "react-hot-toast";
 
 function Feeds() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    fetchFeeds()
+    fetchFeeds();
     // console.log(window.getAuthToken())
-    
   }, []);
 
   const fetchFeeds = () => {
@@ -41,7 +39,108 @@ function Feeds() {
           setFeeds(json.data);
         }
       });
-  }
+  };
+  const postResponse = (type, pid, index) => {
+    fetch(`${config.API_URL}feeds/response`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+      body: JSON.stringify({
+        type: type,
+        pid: pid,
+      }),
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        if (json.status) {
+          getOnePost(pid, index);
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const postDelete = (pid) => {
+    fetch(`${config.API_URL}feeds/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+      body: JSON.stringify({
+        pid: pid,
+      }),
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        if (json.status) {
+          // console.log("")
+          fetchFeeds();
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getOnePost = (pid, index) => {
+    fetch(`${config.API_URL}feeds/post/` + pid, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.status) {
+          modifyFeedsArray(json.data, index);
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const modifyFeedsArray = (data, position) => {
+    console.log(data, position);
+    let myFeeds = [...feeds];
+    let array = [];
+    myFeeds.forEach((item, index) => {
+      if (index === position) {
+        array.push(data);
+      } else {
+        array.push(item);
+      }
+    });
+    setFeeds(array);
+  };
 
   const myContacts = [
     {
@@ -80,15 +179,19 @@ function Feeds() {
 
           {feeds.map((item, index) => (
             <FeedCard
+              index={index}
               key={index}
-              text="Shobit khatri"
+              text={item.postAuthor}
               authorImage={Placeholder}
-              date="05-December-2022"
+              date={item.postDate}
               description={item.postText}
-              postimage={CardPlaceholder}
-              likereaction={Like}
-              heartreaction={Heart}
-              comments={2}
+              postId={item.postId}
+              postimage={item.postImage}
+              likes={item.likes}
+              dislikes={item.dislikes}
+              comments={item.comments}
+              reactionHandler={postResponse}
+              deletePost={postDelete}
             />
           ))}
         </div>
