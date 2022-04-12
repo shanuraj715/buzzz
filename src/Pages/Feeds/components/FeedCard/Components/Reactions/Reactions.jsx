@@ -1,5 +1,5 @@
-import React from 'react'
-import './reactions.scss'
+import React from "react";
+import "./reactions.scss";
 
 function Reactions(props) {
   return (
@@ -16,11 +16,13 @@ function Reactions(props) {
           </div>
         </div>
         <div className="feed-reaction-comment">
-          <span>{`${props.comments} ${props.comments > 1 ? 'Comments' : 'Comment'}`}</span>
+          <span>{`${props.comments} ${
+            props.comments > 1 ? "Comments" : "Comment"
+          }`}</span>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Reactions
+export default Reactions;

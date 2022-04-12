@@ -37,12 +37,13 @@ function Feeds({ isLogged }) {
         return res.json();
       })
       .then((json) => {
+        console.log(json);
         if (json.status) {
           setFeeds(json.data);
         }
       });
   };
-  
+
   const postResponse = (type, pid, index) => {
     fetch(`${config.API_URL}feeds/response`, {
       method: "POST",
