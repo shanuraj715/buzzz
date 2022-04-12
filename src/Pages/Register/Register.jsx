@@ -12,7 +12,7 @@ import Icon from "../../Components/FontAwesome/FontAwesome";
 import Loading from "../../Components/Loading/Loading";
 import validator from "validator";
 
-function Register() {
+function Register({ isLogged }) {
   // STATES OF THIS COMPONENT
   const [fname, setFName] = useState("");
   const [lname, setLName] = useState("");
@@ -23,6 +23,10 @@ function Register() {
   const [isUsernameAvailable, setIsUsernameAvailable] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [redirectTo, setRedirectTo] = useState("");
+
+  useEffect(() => {
+    if (isLogged) setRedirectTo("/feeds");
+  }, []);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -116,8 +120,8 @@ function Register() {
           setRedirectTo("/login");
         } else {
           toast.error(json.message);
+          setIsLoading(false);
         }
-        setIsLoading(false);
       })
       .catch((err) => {
         setIsLoading(false);

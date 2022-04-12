@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./feeds.scss";
+import { Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
 import Background from "../../Components/PageBackground/PageBackground";
@@ -13,13 +14,13 @@ import UserCard from "./components/UserCard/UserCard";
 import Like from "../../assets/images/reaction-like.svg";
 import Heart from "../../assets/images/reaction-heart.svg";
 
-function Feeds() {
+function Feeds({ isLogged }) {
   const [feeds, setFeeds] = useState([]);
+  const [redirectTo, setRedirectTo] = useState("");
 
   useEffect(() => {
-    fetchFeeds()
-    // console.log(window.getAuthToken())
-    
+    fetchFeeds();
+    if (!isLogged) setRedirectTo("/login");
   }, []);
 
   const fetchFeeds = () => {
@@ -41,7 +42,7 @@ function Feeds() {
           setFeeds(json.data);
         }
       });
-  }
+  };
 
   const myContacts = [
     {
@@ -67,6 +68,7 @@ function Feeds() {
   ];
   return (
     <>
+      {redirectTo !== "" ? <Redirect to={redirectTo} /> : null}
       <Helmet>
         <title>Feeds Page | {config.APP_NAME}</title>
       </Helmet>

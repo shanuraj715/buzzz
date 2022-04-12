@@ -10,11 +10,16 @@ function Cards(props) {
   return (
     <div className="card-bg">
       <div className="main-card">
-    <CreatePost text="Create Post" hide={props.hideCard} />
-        <Circular text = "Shobit khatri" img = {images}/>
-        <input type="text" value={props.text} onChange={e => props.setText(e.target.value)} />
+        <CreatePost text="Create Post" hide={props.hideCard} />
+        <Circular text="Shobit khatri" img={images} />
+        <input
+          className="create-post-text"
+          type="text"
+          value={props.text}
+          onChange={(e) => props.setText(e.target.value)}
+        />
         <div className="photos-card">
-         <PhotosCard text = "Add Photo"/>
+          <PhotosCard text="Add Photo" />
         </div>
         <div className="post-button">
           <button onClick={props.postData}>Post</button>

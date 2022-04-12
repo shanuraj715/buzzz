@@ -17,6 +17,7 @@ import ViewProfile from './Pages/ViewProfile/ViewProfile'
 function App() {
 
   const [isLogged, setIsLogged] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
 
@@ -33,30 +34,36 @@ function App() {
       return res.json()
     }).then(json => {
       if (json.status) {
+        console.log(!!json.logged)
         setIsLogged(!!json.logged)
       }
+      setIsLoading(false)
     })
       .catch(err => {
         console.log(err)
+        setIsLoading(false)
       })
 
   }, [])
 
   return (
     <>
-      <Toaster position="bottom-left" reverseOrder={false} />
+      {!isLoading ?
+        <>
+          <Toaster position="bottom-left" reverseOrder={false} />
 
-      <Switch>
-        <Route path="/" exact render={() => <Redirect to={isLogged ? '/feeds' : '/login'} />} />
-        <Route path='/feeds' exact component={Feeds} />
-        <Route path='/login' exact component={Login} />
-        <Route path='/register' exact component={Register} />
-        <Route path="/friends" exact component={Friends} />
-        <Route path="/profile/edit/" exact component={EditProfile} />
-        <Route path='/profile/view/:id' exact component={ViewProfile} />
-        <Route path='*' component={Page404} />
+          <Switch>
+            <Route path="/" exact render={() => <Home isLogged={isLogged} />} />
+            <Route path='/feeds' exact render={() => <Feeds isLogged={isLogged} />} />
+            <Route path='/login' exact render={() => <Login isLogged={isLogged} />} />
+            <Route path='/register' exact render={() => <Register isLogged={isLogged} />} />
+            <Route path="/friends" exact render={() => <Friends isLogged={isLogged} />} />
+            <Route path="/profile/edit/" exact render={() => <EditProfile isLogged={isLogged} />} />
+            <Route path='/profile/view/:id' exact render={() => <ViewProfile isLogged={isLogged} />} />
+            <Route path='*' component={Page404} />
 
-      </Switch>
+          </Switch>
+        </> : null}
 
     </>
   );

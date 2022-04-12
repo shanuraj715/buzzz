@@ -16,11 +16,7 @@ function ContextMenu(prop) {
           {prop.data?.map((item, index) => {
             if (item.type === "link")
               return (
-                <Link
-                  className="contextmenu-btn"
-                  key={index}
-                  to="/profile/shanuraj715"
-                >
+                <Link className="contextmenu-btn" key={index} to={item.to}>
                   <Icon
                     classes={`${item.icon} pe-8 cm-btn-icon`}
                     type="solid"
@@ -29,11 +25,12 @@ function ContextMenu(prop) {
                 </Link>
               );
             if (item.type === "button") {
+              console.log(item);
               return (
                 <button
                   className="contextmenu-btn"
                   key={index}
-                  onClick={item.click}
+                  onClick={() => item.click(item.uid)}
                 >
                   <Icon
                     classes={`${item.icon} pe-8 cm-btn-icon`}

@@ -3,4 +3,81 @@
   max-width: 400px;
   min-height: 200px;
   background-color: #fff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 15px;
+  display: grid;
+  gap: 15px;
+}
+
+.ep-btns-cont {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  .ep-img-upload-btn {
+    border: solid 2px #2980b9;
+    outline: none;
+    background-color: #16a085;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  }
+
+  .ep-img-remove-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #f00;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+}
+
+.ep-img-pre-cont {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.ep-file-selector {
+  display: none;
+}
+
+.ep-upload-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  button {
+    flex-grow: 1;
+    padding: 8px 20px;
+    border: solid 1px #16a085;
+    outline: none;
+    border-radius: 5px;
+    background-color: #8e44ad;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    color: white;
+  }
 }
