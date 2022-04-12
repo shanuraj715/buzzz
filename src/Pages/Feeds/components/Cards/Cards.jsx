@@ -19,16 +19,20 @@ function Cards(props) {
         <CreatePost text="Create Post" hide={props.hideCard} />
         <Circular text="Shobit khatri" img={images} />
         <input
+          className="create-post-text"
           type="text"
           value={props.text}
           onChange={(e) => props.setText(e.target.value)}
         />
+        <div className="photos-card">
+          <PhotosCard text="Add Photo" />
         <div className="photos-card" onClick={chooseImage}>
           {props.fileToShow === '' ? (
             <PhotosCard text="Add Photo" />
           ) : (
             <img src={props.fileToShow} alt="" />
           )}
+          
         </div>
         <div className="post-button">
           <button onClick={props.postData}>Post</button>

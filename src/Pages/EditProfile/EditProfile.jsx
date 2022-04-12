@@ -14,15 +14,18 @@ import toast from "react-hot-toast";
 import Buttons from "../../Components/Buttons/Classic";
 import Loading from "../../Components/Loading/Loading";
 import ProfileImageUploader from "./components/ProfileImageUploader/ProfileImageUploader";
+import { Link } from "react-router-dom";
 
 const cookie = new Cookie();
-
 function EditProfile() {
   const [isLoading, setIsLoading] = useState(false);
   const [statesVisible, setStatesVisible] = useState(false);
   const [designationVisible, setDesignationVisible] = useState(false);
+  const [profileImageUploaderVisible, setProfileImageUploaderVisible] =
+    useState(false);
 
   // FORM DATA
+  const [userId, setUserId] = useState("");
   const [gender, setGender] = useState("m");
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -32,6 +35,7 @@ function EditProfile() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [image, setImage] = useState("");
 
   const dropDownStatesClickHandler = (value) => {
     setState(value);
@@ -68,6 +72,7 @@ function EditProfile() {
         throw new Error("");
       })
       .then((json) => {
+        console.log(json);
         if (json.status) {
           // SET STATES
           setGender(json.data.gender);
@@ -79,6 +84,8 @@ function EditProfile() {
           setState(json.data.state);
           setWebsite(json.data.website);
           setZip(json.data.zip);
+          setImage(json.data.profileImage);
+          setUserId(json.data.userId);
         }
         setIsLoading(false);
       })
@@ -139,11 +146,20 @@ function EditProfile() {
         <title>Edit Profile | {config.APP_NAME}</title>
       </Helmet>
       <PageBackground />
-      {/* <ProfileImageUploader /> */}
+      {profileImageUploaderVisible ? (
+        <ProfileImageUploader
+          setImage={setImage}
+          hide={setProfileImageUploaderVisible}
+        />
+      ) : null}
       <Header />
       <div className="container feeds-container">
         <div className="feed-col2 white-bg">
-          <ProfileUserImage />
+          <ProfileUserImage
+            image={image}
+            changeImage={setProfileImageUploaderVisible}
+          />
+
           <div className="profile-data-cont">
             <div className="profile-text-data">
               <h2>Shanu Raj</h2>
@@ -266,9 +282,11 @@ function EditProfile() {
               </div>
             </div>
             <div className="profile-update-btn-cont">
-              <Buttons type="primary" click={updateData}>
-                Cancel
-              </Buttons>
+              <Link to={"/profile/view/" + userId}>
+                <Buttons type="primary" click={() => {}}>
+                  Cancel
+                </Buttons>
+              </Link>
               <Buttons type="secondary" click={updateData}>
                 Update
               </Buttons>

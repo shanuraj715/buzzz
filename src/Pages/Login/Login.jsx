@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
 
-function Login() {
+function Login({ isLogged }) {
   const [username, setUsername] = useState(
     ls.getObject("login-cred").username || ""
   );
@@ -57,14 +57,13 @@ function Login() {
           throw new Error("");
         }
 
-        ls.set("auth-token", res.headers.get("x-auth-token"));
         return res.json();
       })
       .then((json) => {
         console.log(json);
         if (json.status) {
           toast.success("Successfully logged in");
-          setRedirectTo("/feeds");
+          window.location.reload();
         } else {
           toast.error(json.message);
         }
@@ -73,6 +72,10 @@ function Login() {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    if (isLogged) setRedirectTo("/feeds");
+  }, []);
 
   return (
     <>

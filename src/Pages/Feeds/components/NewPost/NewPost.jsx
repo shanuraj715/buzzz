@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 function NewPost(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [text, setText] = useState("");
+
   const [filePath, setFilePath] = useState("");
   const [file, setFile] = useState("");
 

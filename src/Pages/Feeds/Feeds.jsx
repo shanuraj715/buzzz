@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./feeds.scss";
+import { Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import config from "../../config.json";
 import Background from "../../Components/PageBackground/PageBackground";
@@ -12,12 +13,13 @@ import CardPlaceholder from "../../assets/images/1280x720.jpg";
 import UserCard from "./components/UserCard/UserCard";
 import toast from "react-hot-toast";
 
-function Feeds() {
+function Feeds({ isLogged }) {
   const [feeds, setFeeds] = useState([]);
+  const [redirectTo, setRedirectTo] = useState("");
 
   useEffect(() => {
     fetchFeeds();
-    // console.log(window.getAuthToken())
+    if (!isLogged) setRedirectTo("/login");
   }, []);
 
   const fetchFeeds = () => {
@@ -40,6 +42,7 @@ function Feeds() {
         }
       });
   };
+  
   const postResponse = (type, pid, index) => {
     fetch(`${config.API_URL}feeds/response`, {
       method: "POST",
@@ -166,6 +169,7 @@ function Feeds() {
   ];
   return (
     <>
+      {redirectTo !== "" ? <Redirect to={redirectTo} /> : null}
       <Helmet>
         <title>Feeds Page | {config.APP_NAME}</title>
       </Helmet>
