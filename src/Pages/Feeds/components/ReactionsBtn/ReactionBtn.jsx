@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Icon from "../../../../Components/FontAwesome/FontAwesome";
 
-function ReactionBtn(props) {
+function ReactionBtn({handler, postId, index}) {
+
+  const like = () => {
+    handler('like', postId, index)
+  }
+
+  const dislike = () => {
+    handler('dislike', postId, index)
+  }
   return (
     <>
        <div className="feed-reaction-btns">
-        <button>
+        <button onClick={like}>
           <Icon classes="fa-thumbs-up pe-8" type="regular" />
           Like
         </button>
-        <button>
+        <button onClick={dislike}>
           <Icon classes="fa-thumbs-down pe-8" type="regular" />
           Dislike
         </button>
@@ -19,7 +27,7 @@ function ReactionBtn(props) {
         </button>
       </div>
     </>
-  );
-}
+  )
+  }
 
-export default ReactionBtn;
+export default ReactionBtn

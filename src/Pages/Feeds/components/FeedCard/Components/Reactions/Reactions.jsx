@@ -1,6 +1,5 @@
 import React from 'react'
-import Like from "../../../../../../assets/images/reaction-like.svg";
-import Heart from "../../../../../../assets/images/reaction-heart.svg";
+import './reactions.scss'
 
 function Reactions(props) {
   return (
@@ -9,11 +8,11 @@ function Reactions(props) {
         <div className="feed-reaction-stat">
           <div>
             <img src={props.likereaction} alt="" />
-            <span>512</span>
+            <span>{props.likes}</span>
           </div>
           <div>
-            <img src={props.heartreaction} alt="" />
-            <span>106</span>
+            <img className="like-btn-180" src={props.heartreaction} alt="" />
+            <span>{props.dislikes}</span>
           </div>
         </div>
         <div className="feed-reaction-comment">

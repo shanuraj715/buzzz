@@ -1,7 +1,19 @@
-import React from "react";
-import Icon from '../../../../../../Components/FontAwesome/FontAwesome'
+import React, { useState } from "react";
+import Icon from "../../../../../../Components/FontAwesome/FontAwesome";
+import "./postmeta.scss";
+import OutsideClickHandler from "react-outside-click-handler";
 
 function PostMeta(prop) {
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const toggle = () => {
+    setIsMenuVisible(!isMenuVisible);
+  };
+
+  const deletePost = () => {
+    prop.deletePost(prop.postId)
+  }
+
   return (
     <>
       <div className="feed-user-row">
@@ -13,14 +25,32 @@ function PostMeta(prop) {
           </div>
         </div>
 
-        <button className="circular-icon-btn">
-          <Icon type="solid" classes="fa-ellipsis-h" />
-        </button>
+        <div className="feed-opt-btn">
+          <button className="circular-icon-btn" onClick={toggle}>
+            <Icon type="solid" classes="fa-ellipsis-h" />
+          </button>
+          {isMenuVisible ? (
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                toggle();
+              }}
+            >
+              <div className="feed-options-cont">
+                <button className="feed-opt-mbtn" onClick={deletePost}>
+                  <Icon type="solid" classes="fa-trash-alt" />
+                  <span>Delete</span>
+                </button>
+                <button  className="feed-opt-mbtn">
+                  <Icon type="solid" classes="fa-flag-checkered" />
+                  <span>Report</span>
+                </button>
+              </div>
+            </OutsideClickHandler>
+          ) : null}
+        </div>
       </div>
       <div className="feed-text-cont">
-        <p>
-         {prop.description}
-        </p>
+        <p>{prop.description}</p>
       </div>
     </>
   );
