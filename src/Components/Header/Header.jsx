@@ -4,6 +4,7 @@ import Icon from "../../Components/FontAwesome/FontAwesome";
 import Image from "../../assets/images/50x50.png";
 import Img from "../../assets/images/logo-text.png";
 
+
 function Header() {
   return (
     <>
@@ -17,7 +18,7 @@ function Header() {
               <div className="header-user-img">
                 <img src={Image} alt="" />
               </div>
-              <span>Shobit Khannatri</span>
+              <span className="username">Shobit Khannatri</span>
             </li>
             <li>
               <button className="circular-icon-btn header-btn">
