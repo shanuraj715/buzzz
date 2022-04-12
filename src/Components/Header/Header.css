@@ -20,16 +20,17 @@ header {
   list-style: none;
   
 }
-span{
+.username{
   color:white;
 }
+/* .logo-img img{
+width: 20%;
+height: 50%;
 
-.logo-img{
-  width: 10%;
-  height:10%;
+  
+} */
 
 
-}
 
 .header-user-name{
     display: flex;
