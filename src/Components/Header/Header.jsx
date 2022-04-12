@@ -2,13 +2,14 @@ import React from "react";
 import "./Header.css";
 import Icon from "../../Components/FontAwesome/FontAwesome";
 import Image from '../../assets/images/50x50.png'
+import Img from '../../assets/images/logo-text.png'
 
 function Header() {
   return (
     <>
       <header className="container-fluid customclass">
         <div>
-          <h1 className="logo">Buzzz</h1>
+          <img  classname ="logo-img" src ={Img} alt=""/>
         </div>
         <div className="content">
           <ul>

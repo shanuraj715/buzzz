@@ -10,18 +10,24 @@ function NewPost(props) {
   const [isVisible, setIsVisible] = useState(false);
   const [text, setText] = useState("");
 
+  const [filePath, setFilePath] = useState("");
+  const [file, setFile] = useState("");
+
   const postFeed = () => {
-    if (text === "") {
-      toast.error("Please type something");
-      return;
-    }
+    let formData = new FormData();
+
+    formData.append("file", file);
+
+    formData.append("text", text);
+    console.log("Main hi hu");
+
     fetch(`${config.API_URL}feeds`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": 'application/json',
         authtoken: window.getAuthToken(),
       },
-      body: JSON.stringify({ postText: text }),
+      body: formData,
     })
       .then((res) => {
         if (!res.status) {
@@ -33,7 +39,8 @@ function NewPost(props) {
         if (json.status) {
           toast.success(json.message);
           props.refresh();
-          setIsVisible(false);
+          setText("");
+          toggleVisible(false);
         } else {
           console.log(json.message);
           toast.error(json.message);
@@ -43,6 +50,17 @@ function NewPost(props) {
         console.log(err);
       });
   };
+
+  const fileSelectHandler = (e) => {
+    setFile(e.target.files[0]);
+    setFilePath(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const toggleVisible = (value) => {
+    setFile({})
+    setFilePath("")
+    setIsVisible(value)
+  }
 
   return (
     <>
@@ -60,7 +78,7 @@ function NewPost(props) {
           />
         </div>
         <div>
-          <button onClick={() => setIsVisible(true)}>
+          <button onClick={() => toggleVisible(true)}>
             <Icon type="regular" classes="fa-images" />
             <span>Photos</span>
           </button>
@@ -69,9 +87,11 @@ function NewPost(props) {
       {isVisible ? (
         <Cards
           text={text}
-          hideCard={() => setIsVisible(false)}
+          hideCard={() => toggleVisible(false)}
           setText={setText}
           postData={postFeed}
+          onSelect={fileSelectHandler}
+          fileToShow={filePath}
         />
       ) : null}
     </>

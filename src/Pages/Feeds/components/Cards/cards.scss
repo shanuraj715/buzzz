@@ -69,10 +69,18 @@
   border: 1px solid grey;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+
+  img{
+    // width: 100%;
+    max-height: 300px;
+    margin: 0 auto;
+  }
 }
 
 .photo-icon {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   background-color: lightyellow;
   justify-content: center;
@@ -123,6 +131,13 @@
 }
 
 @media screen and(min-width: $screen2-width ) {
+.feed-photo-upload{
+  display: none;
+}
+
+
+@media screen and(min-width: $screen2-width ){
+
   .main-card {
     width: 500px;
   }
