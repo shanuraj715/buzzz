@@ -23,6 +23,7 @@ function EditProfile({ isLogged }) {
   const [designationVisible, setDesignationVisible] = useState(false);
   const [profileImageUploaderVisible, setProfileImageUploaderVisible] =
     useState(false);
+  const [contacts, setContacts] = useState([]);
 
   // FORM DATA
   const [userId, setUserId] = useState("");
@@ -50,8 +51,42 @@ function EditProfile({ isLogged }) {
   useEffect(() => {
     if (isLogged) {
       getData();
+      fetchContacts();
     }
   }, []);
+
+  const fetchContacts = () => {
+    fetch(`${config.API_URL}friend/list/friends`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        if (json.status) {
+          const contacts = json.data.map((item) => {
+            return {
+              name: item.fname + " " + item.lname,
+              image: item.image,
+            };
+          });
+          setContacts(contacts);
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getData = () => {
     const authToken = window.getAuthToken();
@@ -297,7 +332,7 @@ function EditProfile({ isLogged }) {
           </div>
         </div>
         <div className="feed-col3">
-          <WidgetCard title="Suggestions" data={[]} />
+          <WidgetCard data={contacts} title="Contacts" />
         </div>
       </div>
       {isLoading ? <Loading /> : null}

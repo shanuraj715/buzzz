@@ -10,6 +10,7 @@
 .feed-col1 {
   display: none;
   min-width: 220px;
+  width: 30%;
   flex-grow: 1;
   // background-color:brown ;
   padding: 4px;
@@ -27,8 +28,9 @@
 
 .feed-col3 {
   display: none;
-  min-width: 240px;
+  min-width: 220px;
   flex-grow: 1;
+  width: 30%;
   // background-color: aqua;
   padding: 4px;
 

@@ -55,7 +55,9 @@ function Header() {
     <>
       <header className="container-fluid header">
         <div className="logo-img">
-          <img className="" src={Img} alt="" />
+          <Link to="/">
+            <img className="" src={Img} alt="" />
+          </Link>
         </div>
         <div className="content">
           <ul>
