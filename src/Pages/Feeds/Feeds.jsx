@@ -227,7 +227,7 @@ function Feeds({ isLogged }) {
             img={userData.profileImage}
             bgImage="https://picsum.photos/400/160"
             posts={userData.postCount}
-            name={userData.firstname + " " + userData.lastname}
+            name={(userData.firstname ?? "") + " " + (userData.lastname ?? "")}
           />
         </div>
         <div className="feed-col2">
