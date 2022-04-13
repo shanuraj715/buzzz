@@ -11,7 +11,7 @@
   justify-content: center;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 200;
 }
 
 .main-card {
@@ -129,11 +129,8 @@
     cursor: pointer;
   }
 }
-
-@media screen and(min-width: $screen2-width ) {
-  .feed-photo-upload {
-    display: none;
-  }
+.feed-photo-upload {
+  display: none;
 }
 
 @media screen and(min-width: $screen2-width ) {

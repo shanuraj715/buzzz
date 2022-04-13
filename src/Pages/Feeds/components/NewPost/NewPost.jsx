@@ -12,14 +12,15 @@ function NewPost(props) {
 
   const [filePath, setFilePath] = useState("");
   const [file, setFile] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const postFeed = () => {
+    setIsLoading(true);
     let formData = new FormData();
 
     formData.append("file", file);
 
     formData.append("text", text);
-    console.log("Main hi hu");
 
     fetch(`${config.API_URL}feeds`, {
       method: "POST",
@@ -45,9 +46,11 @@ function NewPost(props) {
           console.log(json.message);
           toast.error(json.message);
         }
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoading(false);
       });
   };
 
@@ -57,16 +60,16 @@ function NewPost(props) {
   };
 
   const toggleVisible = (value) => {
-    setFile({})
-    setFilePath("")
-    setIsVisible(value)
-  }
+    setFile({});
+    setFilePath("");
+    setIsVisible(value);
+  };
 
   return (
     <>
       <div className="post-section-row">
         <div>
-          <img src={Image} alt="" />
+          <img src={props.userIcon} alt="" />
         </div>
         <div>
           <input
@@ -92,6 +95,9 @@ function NewPost(props) {
           postData={postFeed}
           onSelect={fileSelectHandler}
           fileToShow={filePath}
+          isLoading={isLoading}
+          name={props.name}
+          userIcon={props.userIcon}
         />
       ) : null}
     </>

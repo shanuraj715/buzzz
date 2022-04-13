@@ -17,6 +17,7 @@ function FeedCard(props) {
         description={props.description}
         deletePost={props.deletePost}
         postId={props.postId}
+        owner={props.owner}
       />
       <PostMedia postimage={props.postimage} />
       <Reactions
@@ -26,7 +27,11 @@ function FeedCard(props) {
         heartreaction={Like}
         comments={props.comments}
       />
-      <ReactionBtns handler={props.reactionHandler} postId={props.postId} index={props.index} />
+      <ReactionBtns
+        handler={props.reactionHandler}
+        postId={props.postId}
+        index={props.index}
+      />
       <div className="feed-comment-cont">
         <div className="fc-user-img">
           <img src={props.authorImage} alt="" />
