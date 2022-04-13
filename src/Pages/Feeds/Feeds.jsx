@@ -6,7 +6,7 @@ import config from "../../config.json";
 import Background from "../../Components/PageBackground/PageBackground";
 import FeedCard from "./components/FeedCard/FeedCard";
 import NewPost from "./components/NewPost/NewPost";
-import Image from "../../assets/images/shobit.jpg";
+import SeachWidget from "../../Components/SearchWidget/SearchWidget";
 import WidgetCard from "../../Components/WidgetCard/WidgetCard";
 import UserCard from "./components/UserCard/UserCard";
 import toast from "react-hot-toast";
@@ -26,10 +26,14 @@ function Feeds({ isLogged }) {
       setRedirectTo("/login");
     } else {
       fetchFeeds();
-      fetchPersonalProfileData();
+
       fetchContacts();
     }
   }, []);
+
+  useEffect(() => {
+    fetchPersonalProfileData();
+  }, [feeds]);
 
   const fetchPersonalProfileData = () => {
     fetch(`${config.API_URL}profile/` + cookies.get("uid"), {
@@ -71,7 +75,6 @@ function Feeds({ isLogged }) {
         return res.json();
       })
       .then((json) => {
-        console.log(json);
         if (json.status) {
           setFeeds(json.data);
         }
@@ -193,7 +196,6 @@ function Feeds({ isLogged }) {
         return res.json();
       })
       .then((json) => {
-        console.log(json);
         if (json.status) {
           const contacts = json.data.map((item) => {
             return {
@@ -224,9 +226,12 @@ function Feeds({ isLogged }) {
           <UserCard
             img={userData.profileImage}
             bgImage="https://picsum.photos/400/160"
+            posts={userData.postCount}
+            name={userData.firstname + " " + userData.lastname}
           />
         </div>
         <div className="feed-col2">
+          {window.innerWidth < 950 ? <SeachWidget /> : null}
           <NewPost
             refresh={fetchFeeds}
             userIcon={userData.profileImage}
@@ -252,6 +257,7 @@ function Feeds({ isLogged }) {
           ))}
         </div>
         <div className="feed-col3">
+          <SeachWidget />
           <WidgetCard data={contacts} title="Contacts" />
           {/* <WidgetCard
             data={myContacts}

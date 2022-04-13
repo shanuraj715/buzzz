@@ -9,15 +9,11 @@ function UserCard(props) {
           <img src={props.bgImage} alt="" />
           <img className="user-card-image" src={props.img} alt="" />
         </div>
-        <h3>Shobit Khatri</h3>
-        <p>Newly Recurit at TTN</p>
+        <h3>{props.name}</h3>
+        <p>TTN Newer</p>
         <div className="profile">
-          {/* <div className="views">
-                    <span>234</span>
-                    <span>Views</span>
-                  </div> */}
-          <div className="Number-of-post">
-            <span>10</span>
+          <div className="number-of-post">
+            <span>{props.posts}</span>
             <span>Post</span>
           </div>
         </div>

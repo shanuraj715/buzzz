@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../Components/Header/Header";
 import ProfileUserImage from "../../Components/ProfileUserImage/ProfileUserImage";
-import Image from "../../assets/images/shobit.jpg";
 import "./viewprofile.scss";
 import Icon from "../../Components/FontAwesome/FontAwesome";
 import WidgetCard from "../../Components/WidgetCard/WidgetCard";
@@ -12,30 +11,50 @@ import { Redirect } from "react-router-dom";
 
 function ViewProfile({ isLogged }) {
   const [data, setData] = useState({});
+  const [contacts, setContacts] = useState([]);
   const [redirectTo, setRedirectTo] = useState(null);
-  const myContacts = [
-    {
-      name: "Shobit khatri",
-      image: Image,
-    },
-    { name: "Shanu raj", image: Image },
-    {
-      name: "Shobit khatri",
-      image: Image,
-    },
-    { name: "Shanu raj", image: Image },
-    {
-      name: "Shobit khatri",
-      image: Image,
-    },
-    { name: "Shanu raj", image: Image },
-    {
-      name: "Shobit khatri",
-      image: Image,
-    },
-    { name: "Shanu raj", image: Image },
-  ];
 
+  useEffect(() => {
+    if (isLogged) {
+      fetchContacts();
+      getProfileData();
+    } else {
+      setRedirectTo("/login");
+    }
+  }, []);
+
+  const fetchContacts = () => {
+    fetch(`${config.API_URL}friend/list/friends`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error("");
+        }
+        return res.json();
+      })
+      .then((json) => {
+        console.log(json);
+        if (json.status) {
+          const contacts = json.data.map((item) => {
+            return {
+              name: item.fname + " " + item.lname,
+              image: item.image,
+            };
+          });
+          setContacts(contacts);
+        } else {
+          toast.error(json.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const sendFriendRequest = () => {
     const uid = window.location.href.split("/").at(-1);
 
@@ -71,14 +90,6 @@ function ViewProfile({ isLogged }) {
     console.log(uid);
     return uid;
   };
-
-  useEffect(() => {
-    if (isLogged) {
-      getProfileData();
-    } else {
-      setRedirectTo("/login");
-    }
-  }, []);
 
   const getProfileData = () => {
     fetch(`${config.API_URL}profile/${getUid()}`, {
@@ -135,12 +146,7 @@ function ViewProfile({ isLogged }) {
           </div>
         </div>
         <div className="feed-col3">
-          <WidgetCard
-            data={myContacts}
-            title="Suggestions"
-            isBtnVisible="true"
-            click={() => alert("Click ho gya")}
-          />
+          <WidgetCard data={contacts} title="Contacts" />
         </div>
       </div>
     </>
