@@ -4,6 +4,7 @@
   display: flex;
   gap: 25px;
   padding: 25px 0;
+  align-items: flex-start;
 }
 
 .feed-col1 {
@@ -12,6 +13,9 @@
   flex-grow: 1;
   // background-color:brown ;
   padding: 4px;
+
+  position: sticky;
+  top: 5px;
 }
 
 .feed-col2 {
@@ -27,6 +31,9 @@
   flex-grow: 1;
   // background-color: aqua;
   padding: 4px;
+
+  position: sticky;
+  top: 5px;
 }
 
 .feed-card {
@@ -183,4 +190,3 @@
     flex-direction: column;
   }
 }
-

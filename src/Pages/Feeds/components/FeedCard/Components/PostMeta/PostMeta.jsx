@@ -11,8 +11,9 @@ function PostMeta(prop) {
   };
 
   const deletePost = () => {
-    prop.deletePost(prop.postId)
-  }
+    toggle();
+    prop.deletePost(prop.postId);
+  };
 
   return (
     <>
@@ -36,11 +37,13 @@ function PostMeta(prop) {
               }}
             >
               <div className="feed-options-cont">
-                <button className="feed-opt-mbtn" onClick={deletePost}>
-                  <Icon type="solid" classes="fa-trash-alt" />
-                  <span>Delete</span>
-                </button>
-                <button  className="feed-opt-mbtn">
+                {prop.owner ? (
+                  <button className="feed-opt-mbtn" onClick={deletePost}>
+                    <Icon type="solid" classes="fa-trash-alt" />
+                    <span>Delete</span>
+                  </button>
+                ) : null}
+                <button className="feed-opt-mbtn">
                   <Icon type="solid" classes="fa-flag-checkered" />
                   <span>Report</span>
                 </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../FontAwesome/FontAwesome";
 import WidgetRow from "../WidgetRow/WidgetRow";
-import "./widgetcard.css";
+import "./widgetcard.scss";
 
 import PropTypes from "prop-types";
 

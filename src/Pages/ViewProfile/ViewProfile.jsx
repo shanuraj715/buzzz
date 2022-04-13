@@ -8,9 +8,11 @@ import WidgetCard from "../../Components/WidgetCard/WidgetCard";
 import config from "../../config.json";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { Redirect } from "react-router-dom";
 
-function ViewProfile() {
+function ViewProfile({ isLogged }) {
   const [data, setData] = useState({});
+  const [redirectTo, setRedirectTo] = useState(null);
   const myContacts = [
     {
       name: "Shobit khatri",
@@ -71,6 +73,14 @@ function ViewProfile() {
   };
 
   useEffect(() => {
+    if (isLogged) {
+      getProfileData();
+    } else {
+      setRedirectTo("/login");
+    }
+  }, []);
+
+  const getProfileData = () => {
     fetch(`${config.API_URL}profile/${getUid()}`, {
       method: "GET",
       headers: {
@@ -86,14 +96,16 @@ function ViewProfile() {
       })
       .then((json) => {
         console.log(json);
-        setData(json.data);
+        if (json.status) setData(json.data);
+        else setRedirectTo("/feeds");
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
   return (
     <>
+      {redirectTo !== null ? <Redirect to={redirectTo} /> : null}
       <Helmet>
         <title>
           {data?.username ?? ""} | {config.APP_NAME}

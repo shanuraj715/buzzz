@@ -14,10 +14,10 @@ import toast from "react-hot-toast";
 import Buttons from "../../Components/Buttons/Classic";
 import Loading from "../../Components/Loading/Loading";
 import ProfileImageUploader from "./components/ProfileImageUploader/ProfileImageUploader";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const cookie = new Cookie();
-function EditProfile() {
+function EditProfile({ isLogged }) {
   const [isLoading, setIsLoading] = useState(false);
   const [statesVisible, setStatesVisible] = useState(false);
   const [designationVisible, setDesignationVisible] = useState(false);
@@ -48,7 +48,9 @@ function EditProfile() {
   };
 
   useEffect(() => {
-    getData();
+    if (isLogged) {
+      getData();
+    }
   }, []);
 
   const getData = () => {
@@ -142,6 +144,7 @@ function EditProfile() {
 
   return (
     <>
+      {!isLogged ? <Redirect to="/login" /> : null}
       <Helmet>
         <title>Edit Profile | {config.APP_NAME}</title>
       </Helmet>

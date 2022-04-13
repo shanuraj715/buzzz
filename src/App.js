@@ -13,6 +13,7 @@ import Page404 from './Pages/Page404/Page404'
 import Friends from './Pages/Friends/Friends'
 import EditProfile from './Pages/EditProfile/EditProfile'
 import ViewProfile from './Pages/ViewProfile/ViewProfile'
+import Loading from './Components/Loading/Loading'
 
 function App() {
 
@@ -34,7 +35,6 @@ function App() {
       return res.json()
     }).then(json => {
       if (json.status) {
-        console.log(!!json.logged)
         setIsLogged(!!json.logged)
       }
       setIsLoading(false)
@@ -54,16 +54,18 @@ function App() {
 
           <Switch>
             <Route path="/" exact render={() => <Home isLogged={isLogged} />} />
-            <Route path='/feeds' exact render={() => <Feeds isLogged={isLogged} />} />
             <Route path='/login' exact render={() => <Login isLogged={isLogged} />} />
             <Route path='/register' exact render={() => <Register isLogged={isLogged} />} />
+            {/* {isLogged ? <> */}
+            <Route path='/feeds' exact render={() => <Feeds isLogged={isLogged} />} />
             <Route path="/friends" exact render={() => <Friends isLogged={isLogged} />} />
             <Route path="/profile/edit/" exact render={() => <EditProfile isLogged={isLogged} />} />
             <Route path='/profile/view/:id' exact render={() => <ViewProfile isLogged={isLogged} />} />
+            {/* </> : null} */}
             <Route path='*' component={Page404} />
 
           </Switch>
-        </> : null}
+        </> : <Loading />}
 
     </>
   );

@@ -7,15 +7,18 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import toast from "react-hot-toast";
 import Loading from "../../Components/Loading/Loading";
+import { Redirect } from "react-router-dom";
 
-function Friends() {
+function Friends({ isLogged }) {
   const [friends, setFriends] = useState([]);
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(0);
 
   useEffect(() => {
-    getFriendList();
-    getRequestList();
+    if (isLogged) {
+      getFriendList();
+      getRequestList();
+    }
   }, []);
 
   const getRequestList = () => {
@@ -33,6 +36,7 @@ function Friends() {
         return res.json();
       })
       .then((json) => {
+        console.log(json);
         if (json.status) {
           setRequests(json.data);
         } else {
@@ -141,8 +145,41 @@ function Friends() {
       });
   };
 
+  const reject = (uid) => {
+    fetch(`${config.API_URL}friend/remove`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authtoken: window.getAuthToken(),
+      },
+      body: JSON.stringify({ uid: uid }),
+    })
+      .then((res) => {
+        if (!res.status === 200) {
+          throw new Error();
+        }
+        return res.json();
+      })
+      .then((json) => {
+        if (json.status) {
+          getRequestList();
+          getFriendList();
+        } else {
+          toast.error(json.message);
+        }
+
+        setIsLoading(2);
+      })
+      .catch((err) => {
+        console.log(err);
+
+        setIsLoading(2);
+      });
+  };
+
   return (
     <>
+      {!isLogged ? <Redirect to="/login" /> : null}
       <Helmet>
         <title>Friends List | {config.APP_NAME}</title>
       </Helmet>
@@ -180,7 +217,7 @@ function Friends() {
                         icon: "fa-ban",
                         text: "Reject Request",
                         type: "button",
-                        click: () => {},
+                        click: reject,
                         uid: item.userId,
                       },
                     ]}

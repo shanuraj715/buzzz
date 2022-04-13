@@ -1,28 +1,27 @@
+.feed-opt-btn {
+  position: relative;
 
+  .feed-options-cont {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 2px;
+    border: solid 1px #999;
+    background-color: white;
+    z-index: 300;
+    display: grid;
+    gap: 4px;
+    min-width: 220px;
+    max-width: 220px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 
-.feed-opt-btn{
-    position: relative;
-
-    .feed-options-cont{
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 2px;
-        border: solid 1px #999;
-
-        display: grid;
-        gap: 4px;
-        min-width: 220px;
-        max-width: 220px;
-        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-
-        .feed-opt-mbtn{
-            padding: 6px 10px;
-            width: 100%;
-            text-align: left;
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
+    .feed-opt-mbtn {
+      padding: 6px 10px;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      gap: 5px;
+      align-items: center;
     }
+  }
 }
